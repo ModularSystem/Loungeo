@@ -209,7 +209,7 @@ app.get('/qa/:question_id/answers', (req, res) => {
 
 app.post('/qa/questions', (req, res) => {
   const { body } = req;
-  const url = `${URL}/qa/questions`;
+  const url = `http://localhost:8080/qa/questions`;
 
   axios.post(url, body, HEADERS)
     .then((response) => {
