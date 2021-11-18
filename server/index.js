@@ -31,6 +31,7 @@ app.get('/products', (req, res) => {
 app.get('/products/:id', (req, res) => {
   const { id } = req.params;
   const url = `${URL}/products/${id}`;
+  console.log(url)
 
   axios.get(url, HEADERS)
     .then((response) => {
@@ -181,7 +182,7 @@ app.post('/reviews/', (req, res) => {
 app.get('/qa/questions/:id', (req, res) => {
   const { id } = req.params;
   const { count } = req.query;
-  const url = `${URL}/qa/questions/?product_id=${id}`;
+  const url = `http://localhost:8080/qa/questions/?product_id=${id}`;
   const headers = { params: { count }, ...HEADERS };
 
   axios.get(url, headers)
