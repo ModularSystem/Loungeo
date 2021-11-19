@@ -110,7 +110,8 @@ class QuestionsAnswers extends React.Component {
         </SectionSplitHeader>
         <div data-testid="QAStyleDiv"
           style={{
-            padding: '5px', display: 'block', margin: '0 auto', width: '70vw' }}
+            padding: '5px', display: 'block', margin: '0 auto', width: '70vw'
+          }}
         >
 
           <AnswerSearch search={this.handleSearch} />
