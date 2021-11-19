@@ -7,6 +7,7 @@ const { outfitData } = require('./clientOutfit.js');
 const app = express();
 const PORT = 3000 || process.env.PORT;
 const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
+const questionsURL = 'http://localhost:8080'
 const HEADERS = { headers: { Authorization: GH_TOKEN } };
 
 app.use(express.static('./client'));
@@ -182,7 +183,7 @@ app.post('/reviews/', (req, res) => {
 app.get('/qa/questions/:id', (req, res) => {
   const { id } = req.params;
   const { count } = req.query;
-  const url = `http://localhost:8080/qa/questions/?product_id=${id}`;
+  const url = `${questionsURL}/qa/questions/?product_id=${id}`;
   const headers = { params: { count }, ...HEADERS };
 
   axios.get(url, headers)
@@ -209,7 +210,7 @@ app.get('/qa/:question_id/answers', (req, res) => {
 
 app.post('/qa/questions', (req, res) => {
   const { body } = req;
-  const url = `http://localhost:8080/qa/questions`;
+  const url = `${questionsURL}/qa/questions`;
 
   axios.post(url, body, HEADERS)
     .then((response) => {
@@ -223,8 +224,7 @@ app.post('/qa/questions', (req, res) => {
 app.post('/qa/:question_id/answers', (req, res) => {
   const { body } = req;
   // eslint-disable-next-line camelcase
-  const url = `${URL}/qa/questions/${req.params.question_id}/answers`;
-
+  const url = `${questionsURL}/qa/questions/${req.params.question_id}/answers`;
   axios.post(url, body, HEADERS)
     .then((response) => {
       res.status(response.status).send(response.data);
@@ -249,7 +249,7 @@ app.post('/cart', (req, res) => {
 });
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  const url = `${URL}/qa/questions/${req.params.question_id}/helpful`;
+  const url = `${questionsURL}/qa/questions/${req.params.question_id}/helpful`;
   axios.put(url, null, HEADERS)
     .then((response) => {
       res.status(response.status).send(response.data);
@@ -260,7 +260,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
 });
 
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  const url = `${URL}/qa/answers/${req.params.answer_id}/helpful`;
+  const url = `${questionsURL}/qa/answers/${req.params.answer_id}/helpful`;
 
   axios.put(url, {}, HEADERS)
     .then(({ status, body }) => {
@@ -272,7 +272,7 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
 });
 
 app.put('/qa/questions/:question_id/report', (req, res) => {
-  const url = `${URL}/qa/questions/${req.params.question_id}/report`;
+  const url = `${questionsURL}/qa/questions/${req.params.question_id}/report`;
 
   axios.put(url, null, HEADERS)
     .then((response) => {
@@ -284,7 +284,7 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
 });
 
 app.put('/qa/answers/:answer_id/report', (req, res) => {
-  const url = `${URL}/qa/answers/${req.params.answer_id}/report`;
+  const url = `${questionsURL}/qa/answers/${req.params.answer_id}/report`;
 
   axios.put(url, null, HEADERS)
     .then((response) => {
