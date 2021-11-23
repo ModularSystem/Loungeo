@@ -79,14 +79,14 @@ export default function AddToCart({ currentStyle, setCart, cart }) {
   const [currentSize, setCurrentSize] = useState('');
   const [addCartValue, setAddCartValue] = useState(1);
 
-  const sizesNums = [];
-  const skusKeys = Object.keys(currentStyle.skus);
-  skusKeys.forEach((key) => {
-    currentStyle.skus[key].id = key;
-    sizesNums.push(currentStyle.skus[key]);
-  });
-  const end = sizesNums.length - 1;
-  sizesNums[end].size = sizesNums[end].size === 'XL' ? 'XXL' : sizesNums[end].size;
+  const sizesNums = currentStyle.skus;
+  // const skusKeys = Object.keys(currentStyle.skus);
+  // skusKeys.forEach((key) => {
+  //   currentStyle.skus[key].id = key;
+  //   sizesNums.push(currentStyle.skus[key]);
+  // });
+  // const end = sizesNums.length - 1;
+  // sizesNums[end].size = sizesNums[end].size === 'XL' ? 'XXL' : sizesNums[end].size;
 
   if (!currentSize) {
     setCurrentSize(sizesNums[0].size);
